@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+  <title>Login</title>
+</h:head>
+
+<h:body>
+  <h:form>  
+    <p:growl id="messages" showDetail="false"/>
+ 	<ui:include src="menu.xhtml" />
+    
+    <br></br>
+    <br></br>
+    
+    <p:panel header="Enviar Correo">
+      <h:panelGrid columns="2" cellpadding="4">
+        <h:outputText value="Email " />
+        <p:inputText value="#{correoVista.email}" />
+
+        <h:outputText value="Asunto " />
+        <p:inputText value="#{correoVista.asunto}" />
+        
+        <h:outputText value="Mensaje " />
+        <p:inputTextarea rows="6" cols="33" value="#{correoVista.mensaje}" />
+
+        <p:commandButton value="Enviar" update="greeting"
+          oncomplete="PF('greetingDialog').show()" />
+      </h:panelGrid>
+    </p:panel>
+    
+    <p:dialog header="Greeting" widgetVar="greetingDialog"
+      modal="true" resizable="false">
+      <h:panelGrid id="greeting" columns="1" cellpadding="4">
+        <h:outputText value="#{correoVista.validarEmail()}" />
+      </h:panelGrid>
+    </p:dialog>
+    
+</h:form>
+</h:body>
+</html>
